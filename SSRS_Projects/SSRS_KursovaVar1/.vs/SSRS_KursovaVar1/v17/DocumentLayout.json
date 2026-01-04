@@ -1,0 +1,68 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\join\\SSRS_KursovaVar1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report4.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}",
+      "RelativeMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|solutionrelative:SSRS_KursovaVar1\\Report4.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report5.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}",
+      "RelativeMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|solutionrelative:SSRS_KursovaVar1\\Report5.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report3.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}",
+      "RelativeMoniker": "D:0:0:{B369863F-26FE-77DE-2EE4-0AD95F12096B}|SSRS_KursovaVar1\\SSRS_KursovaVar1.rptproj|solutionrelative:SSRS_KursovaVar1\\Report3.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Report5.rdl [Design]",
+              "DocumentMoniker": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report5.rdl",
+              "RelativeDocumentMoniker": "SSRS_KursovaVar1\\Report5.rdl",
+              "ToolTip": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report5.rdl [Design]",
+              "RelativeToolTip": "SSRS_KursovaVar1\\Report5.rdl [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-04T17:00:46.802Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Report4.rdl [Design]",
+              "DocumentMoniker": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report4.rdl",
+              "RelativeDocumentMoniker": "SSRS_KursovaVar1\\Report4.rdl",
+              "ToolTip": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report4.rdl [Design]",
+              "RelativeToolTip": "SSRS_KursovaVar1\\Report4.rdl [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-04T14:36:31.239Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Report3.rdl [Design]",
+              "DocumentMoniker": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report3.rdl",
+              "RelativeDocumentMoniker": "SSRS_KursovaVar1\\Report3.rdl",
+              "ToolTip": "D:\\join\\SSRS_KursovaVar1\\SSRS_KursovaVar1\\Report3.rdl [Design]",
+              "RelativeToolTip": "SSRS_KursovaVar1\\Report3.rdl [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-04T13:45:05.403Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

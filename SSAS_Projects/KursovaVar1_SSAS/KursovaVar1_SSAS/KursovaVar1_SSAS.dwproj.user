@@ -1,0 +1,29 @@
+<AnalysisServicesUserConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>Kursova Var1 DWH</Id>
+            <Name>Kursova Var1 DWH</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMBMYYLAnr0yCyCGMYlnA7gAAAAAiAAAASwB1AHIAcwBvAHYAYQAgAFYAYQByADEAIABEAFcASAAAABBmAAAAAQAAIAAAAEliL7Kgb1khBgFvak+GX4QNG1Ev8I8QpmNWu11/R4yPAAAAAA6AAAAAAgAAIAAAAFV9SIuc9OYFz29zpexlS+XftFUo4lt6QX3snW38enkAEAAAAI0QyhvQMI/wXEpudDWSPtJAAAAAG69JoIXwyCZDvxKBpzHHQo3TI9gz+oOe8tdnmfgu9A0f8bAi1LUzO4CGl7pEg66L25SFNA8VSOmMudSII+RdnQ==</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>Kursova Var1 DWH</Id>
+            <Name>Kursova Var1 DWH</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMBMYYLAnr0yCyCGMYlnA7gAAAAAiAAAASwB1AHIAcwBvAHYAYQAgAFYAYQByADEAIABEAFcASAAAABBmAAAAAQAAIAAAAO/RghYvi9Zgx7f70yMJS+BYQ8KmYQBUBVv2AsgtJhgNAAAAAA6AAAAAAgAAIAAAAJbD3bQI2RwMSJbulW4Q/55XDWK0fE+NB0jzUhIZm6hAEAAAADO2DVRZO8EWLOVDwWlSyphAAAAAINRVMrycAWuvUOg/sQcXy6SlL5gTfIhsWAGFeN5X0vr4/CWzbeHOtfd889gZsFHxamSRpPsajVKlPK4sdLthLQ==</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <TargetServer>DESKTOP-GQROG2M\LOCALHOST</TargetServer>
+        <TargetDatabase>KursovaVar1_SSAS</TargetDatabase>
+        <StartObject>
+          <ObjectId></ObjectId>
+          <ObjectType>Current</ObjectType>
+        </StartObject>
+      </Options>
+    </Configuration>
+  </Configurations>
+</AnalysisServicesUserConfiguration>

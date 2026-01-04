@@ -1,0 +1,163 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\join\\KursovaVar1_SSAS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Kursova Var1 DWH.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Book.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Book.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Teacher.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Teacher.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Subject.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Subject.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Group.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Group.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Student.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Student.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Kursova Var1 DWH.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Faculty.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{AF6E606D-E0D7-39B1-1353-81025B39123D}|KursovaVar1_SSAS\\KursovaVar1_SSAS.dwproj|solutionrelative:KursovaVar1_SSAS\\Dim Faculty.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Kursova Var1 DWH.cube [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.cube",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Kursova Var1 DWH.cube",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.cube [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Kursova Var1 DWH.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-04T08:27:00.285Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Teacher.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Teacher.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Teacher.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Teacher.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Teacher.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:13:37.359Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dim Subject.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Subject.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Subject.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Subject.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Subject.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:13:16.049Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dim Group.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Group.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Group.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Group.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Group.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:13:00.439Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dim Faculty.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Faculty.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Faculty.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Faculty.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Faculty.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:12:45.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Date.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Date.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Date.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:12:22.149Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dim Book.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Book.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Book.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Book.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Book.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:11:10.38Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dim Student.dim [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Student.dim",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Dim Student.dim",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Dim Student.dim [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Dim Student.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:10:41.062Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Kursova Var1 DWH.dsv [Design]",
+              "DocumentMoniker": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.dsv",
+              "RelativeDocumentMoniker": "KursovaVar1_SSAS\\Kursova Var1 DWH.dsv",
+              "ToolTip": "D:\\join\\KursovaVar1_SSAS\\KursovaVar1_SSAS\\Kursova Var1 DWH.dsv [Design]",
+              "RelativeToolTip": "KursovaVar1_SSAS\\Kursova Var1 DWH.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-03T22:09:44.572Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

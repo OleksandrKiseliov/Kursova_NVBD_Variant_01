@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "SSRS_KursovaVar1", "SSRS_KursovaVar1\SSRS_KursovaVar1.rptproj", "{B369863F-26FE-77DE-2EE4-0AD95F12096B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Debug|Default.ActiveCfg = Debug
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Debug|Default.Build.0 = Debug
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Debug|Default.Deploy.0 = Debug
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.DebugLocal|Default.Build.0 = DebugLocal
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Release|Default.ActiveCfg = Release
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Release|Default.Build.0 = Release
+		{B369863F-26FE-77DE-2EE4-0AD95F12096B}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E40274C2-12B6-4482-81DC-0E06A0CAE54C}
+	EndGlobalSection
+EndGlobal

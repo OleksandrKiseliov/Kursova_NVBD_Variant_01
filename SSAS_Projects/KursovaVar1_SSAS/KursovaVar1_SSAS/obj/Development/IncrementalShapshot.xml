@@ -1,0 +1,110 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>KursovaVar1_SSAS</Database>
+    <Server>DESKTOP-GQROG2M\LOCALHOST</Server>
+    <ConnectionString>Data Source=DESKTOP-GQROG2M\LOCALHOST;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>+Rl5vb2ecJ+5EUTkv1qbqDeq4co=04.01.2026 0:08:4204.01.2026 0:08:42</TimeStamp>
+        <ID>
+          <String>Kursova Var1 DWH</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>fxStAXqEtTSR0zKzTXbKyqd/5Yo=04.01.2026 0:09:3504.01.2026 0:09:34</TimeStamp>
+        <ID>
+          <String>Kursova Var1 DWH</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>NymCY6mnNpchfbDjzixIYp/mug0=04.01.2026 10:27:0004.01.2026 0:10:40</TimeStamp>
+        <ID>
+          <String>Dim Student</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>R8bUsAiENbD8RSScQ2Nl+FQeyZc=04.01.2026 10:27:0004.01.2026 0:11:10</TimeStamp>
+        <ID>
+          <String>Dim Book</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>8cNMuOYaVGgkPcsoq2EQAtSTu4M=04.01.2026 23:18:1904.01.2026 0:12:22</TimeStamp>
+        <ID>
+          <String>Dim Date</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>htNfAveDlRY0ctPuZYF9w1l2QAI=04.01.2026 0:12:4504.01.2026 0:12:45</TimeStamp>
+        <ID>
+          <String>Dim Faculty</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>meXwze8hYUxtPx9yEhYP1t0b3+4=04.01.2026 10:27:0004.01.2026 0:13:00</TimeStamp>
+        <ID>
+          <String>Dim Group</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>RZDeOycea+CkYZWD+zV+YhGFA7E=04.01.2026 10:27:0004.01.2026 0:13:15</TimeStamp>
+        <ID>
+          <String>Dim Subject</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>fDHbOafVPyYp0H76sa/LqfIlxZQ=04.01.2026 10:27:0004.01.2026 0:13:37</TimeStamp>
+        <ID>
+          <String>Dim Teacher</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>sn0nuNmHOJkitixBJ0+J2tSqrs4=04.01.2026 10:27:0004.01.2026 10:26:59</TimeStamp>
+        <ID>
+          <String>Fact Book Loans</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>dpRnNsRpHKxhMUhiiGIaRga+CNA=04.01.2026 23:18:1904.01.2026 10:26:59gk0FGRBRe3wxVoM8/76ZqW4CQfA=04.01.2026 11:07:0004.01.2026 10:26:59</TimeStamp>
+        <ID>
+          <String>Kursova Var1 DWH</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>cfwwF4UqRBwWYjmJrOhtLPzBRhw=04.01.2026 0:07:5504.01.2026 0:07:55</TimeStamp>
+      <ID>
+        <String>KursovaVar1_SSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-01-04T21:18:29.44Z</LastDeployed>
+</DeploymentSnapshot>

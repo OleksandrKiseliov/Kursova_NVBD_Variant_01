@@ -1,0 +1,2843 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/3/2026 3:37:37 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-GQROG2M"
+  DTS:CreatorName="DESKTOP-GQROG2M\Upgrade"
+  DTS:DTSID="{F6F63288-670D-4490-A291-967BC2C3C4B5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1058"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{A4F9503F-6F05-4067-9B92-FE165F85FAC9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{631ABC32-A560-45E2-9F5A-C09E44636B97}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.FactBookLoans;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FactBookLoans"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{42B89017-557E-4DD0-BE33-D93F212A668F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FactBookLoans"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FactBookLoans\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input].Columns[ReturnDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ReturnDateKey"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\Conditional Split.Outputs[HasReturnDate]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="HasReturnDate"
+                  synchronousInputId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(ReturnDateKey)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\Conditional Split.Outputs[NoReturnDate]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="NoReturnDate"
+                  synchronousInputId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ReturnDateKey)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[LoanID]"
+                      cachedDataType="i8"
+                      cachedName="LoanID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[BookID]"
+                      cachedDataType="i4"
+                      cachedName="BookID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[StudentID]"
+                      cachedDataType="i4"
+                      cachedName="StudentID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[GroupID]"
+                      cachedDataType="i4"
+                      cachedName="GroupID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[LoanDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="LoanDate"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input].Columns[ReturnDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReturnDate"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LoanID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LoanID]"
+                      name="Copy of LoanID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of BookID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of BookID]"
+                      name="Copy of BookID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of StudentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of StudentID]"
+                      name="Copy of StudentID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GroupID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of GroupID]"
+                      name="Copy of GroupID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LoanDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LoanDate]"
+                      name="Copy of LoanDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ReturnDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of ReturnDate]"
+                      name="Copy of ReturnDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input].Columns[LoanDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="LoanDate"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input].Columns[ReturnDate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ReturnDate"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDateKey]"
+                      name="LoanDateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)([REPLACE]((DT_WSTR,10)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]},"-",""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)(REPLACE((DT_WSTR,10)LoanDate,"-",""))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]"
+                      name="ReturnDateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}) ? NULL(DT_I4) : (DT_I4)([REPLACE]((DT_WSTR,10)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]},"-",""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ReturnDate) ? NULL(DT_I4) : (DT_I4)(REPLACE((DT_WSTR,10)ReturnDate,"-",""))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsReturned]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsReturned]"
+                      name="IsReturned"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}) ? (DT_BOOL)0 : (DT_BOOL)1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ReturnDate) ? (DT_BOOL)0 : (DT_BOOL)1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDays]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDays]"
+                      name="LoanDays"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}) ? NULL(DT_I4) : (DT_I4)[DATEDIFF]("day",(DT_DATE)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]},(DT_DATE)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ReturnDate) ? NULL(DT_I4) : (DT_I4)DATEDIFF("day",(DT_DATE)LoanDate,(DT_DATE)ReturnDate)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[DaysOverdue]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[DaysOverdue]"
+                      name="DaysOverdue"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}) ? (DT_I4)[DATEDIFF]("day",(DT_DATE)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]},[GETDATE]()) : NULL(DT_I4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ReturnDate) ? (DT_I4)DATEDIFF("day",(DT_DATE)LoanDate,GETDATE()) : NULL(DT_I4)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsOverdue365]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsOverdue365]"
+                      name="IsOverdue365"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL](#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]}) &amp;&amp; ([DATEDIFF]("day",(DT_DATE)#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]},[GETDATE]()) &gt; 365) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(ReturnDate) &amp;&amp; (DATEDIFF("day",(DT_DATE)LoanDate,GETDATE()) &gt; 365) ? (DT_BOOL)1 : (DT_BOOL)0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanCount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanCount]"
+                      name="LoanCount"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimBook"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimBook"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT BookID, BookKey FROM dbo.DimBook;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT BookID, BookKey FROM dbo.DimBook;) [refTable]
+where [refTable].[BookKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="BookID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BookKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimBook.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimBook.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimBook.Inputs[Lookup Input].Columns[BookID]"
+                      cachedDataType="i4"
+                      cachedName="BookID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BookKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimBook.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output].Columns[BookKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output].Columns[BookKey]"
+                      name="BookKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">BookKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimBook.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimBook.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimBook.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimBook.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimBook.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimBook.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimBook.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimBook.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimDateLoan"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimDateLoan"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DateKey FROM dbo.DimDate;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT DateKey FROM dbo.DimDate;) [refTable]
+where [refTable].[DateKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDateKey]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimDateLoan.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input].Columns[LoanDateKey]"
+                      cachedDataType="i4"
+                      cachedName="LoanDateKey"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDateKey]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DateKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output].Columns[LoanDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output].Columns[LoanDateKey]"
+                      name="LoanDateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimDateReturn"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimDateReturn"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DateKey
+FROM dbo.DimDate;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT DateKey
+FROM dbo.DimDate;) [refTable]
+where [refTable].[DateKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimDateReturn.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input].Columns[ReturnDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ReturnDateKey"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DateKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Match Output].Columns[ReturnDateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Match Output].Columns[ReturnDateKey]"
+                      name="ReturnDateKey"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimFaculty"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimFaculty"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT FacultyID, FacultyKey FROM dbo.DimFaculty;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT FacultyID, FacultyKey FROM dbo.DimFaculty;) [refTable]
+where [refTable].[FacultyID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="FacultyID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FacultyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[FacultyID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimFaculty.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input].Columns[FacultyID]"
+                      cachedDataType="i4"
+                      cachedName="FacultyID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[FacultyID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FacultyID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output].Columns[FacultyKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output].Columns[FacultyKey]"
+                      name="FacultyKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FacultyKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimGroup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimGroup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT GroupID, GroupKey FROM dbo.DimGroup;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT GroupID, GroupKey FROM dbo.DimGroup;) [refTable]
+where [refTable].[GroupID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="GroupID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GroupKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimGroup.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input].Columns[GroupID]"
+                      cachedDataType="i4"
+                      cachedName="GroupID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">GroupID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output].Columns[GroupKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output].Columns[GroupKey]"
+                      name="GroupKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">GroupKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimGroup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimGroup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimGroup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimGroup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimGroup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimGroup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\DimStudent"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimStudent"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT StudentID, StudentKey
+FROM dbo.DimStudent
+WHERE IsCurrent = 1;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT StudentID, StudentKey
+FROM dbo.DimStudent
+WHERE IsCurrent = 1;) [refTable]
+where [refTable].[StudentID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="StudentID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StudentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\DimStudent.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input].Columns[StudentID]"
+                      cachedDataType="i4"
+                      cachedName="StudentID"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">StudentID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output].Columns[StudentKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output].Columns[StudentKey]"
+                      name="StudentKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">StudentKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimStudent.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactBookLoans\DimStudent.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimStudent.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimStudent.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\DimStudent.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\DimStudent.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactBookLoans]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanID]"
+                      cachedDataType="i8"
+                      cachedName="LoanID"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsReturned]"
+                      cachedDataType="bool"
+                      cachedName="IsReturned"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsReturned]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsReturned]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanDays]"
+                      cachedDataType="i4"
+                      cachedName="LoanDays"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanDays]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDays]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DaysOverdue]"
+                      cachedDataType="i4"
+                      cachedName="DaysOverdue"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOverdue]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[DaysOverdue]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsOverdue365]"
+                      cachedDataType="bool"
+                      cachedName="IsOverdue365"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsOverdue365]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsOverdue365]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanCount]"
+                      cachedDataType="i4"
+                      cachedName="LoanCount"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanCount]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanCount]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StudentKey]"
+                      cachedDataType="i4"
+                      cachedName="StudentKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StudentKey]"
+                      lineageId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output].Columns[StudentKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      lineageId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FacultyKey]"
+                      cachedDataType="i4"
+                      cachedName="FacultyKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FacultyKey]"
+                      lineageId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output].Columns[FacultyKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BookKey]"
+                      cachedDataType="i4"
+                      cachedName="BookKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookKey]"
+                      lineageId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output].Columns[BookKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ReturnDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ReturnDateKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReturnDateKey]"
+                      lineageId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Match Output].Columns[ReturnDateKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoanDateKey]"
+                      cachedDataType="i4"
+                      cachedName="LoanDateKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanDateKey]"
+                      lineageId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output].Columns[LoanDateKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookLoanKey]"
+                      dataType="i8"
+                      name="BookLoanKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanDateKey]"
+                      dataType="i4"
+                      name="LoanDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ReturnDateKey]"
+                      dataType="i4"
+                      name="ReturnDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StudentKey]"
+                      dataType="i4"
+                      name="StudentKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      dataType="i4"
+                      name="GroupKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FacultyKey]"
+                      dataType="i4"
+                      name="FacultyKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookKey]"
+                      dataType="i4"
+                      name="BookKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanID]"
+                      dataType="i8"
+                      name="LoanID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanCount]"
+                      dataType="i4"
+                      name="LoanCount" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsReturned]"
+                      dataType="bool"
+                      name="IsReturned" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoanDays]"
+                      dataType="i4"
+                      name="LoanDays" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOverdue]"
+                      dataType="i4"
+                      name="DaysOverdue" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsOverdue365]"
+                      dataType="bool"
+                      name="IsOverdue365" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactBookLoans]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="{2E2A5514-C19D-459B-93B2-BAAB77A6E0CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova_var1_DWH.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[LoanID]"
+                      cachedDataType="i8"
+                      cachedName="LoanID"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ReturnDateKey]"
+                      cachedDataType="i4"
+                      cachedName="ReturnDateKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ReturnDateKey]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[ReturnDateKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[IsReturned]"
+                      cachedDataType="bool"
+                      cachedName="IsReturned"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[IsReturned]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsReturned]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[LoanDays]"
+                      cachedDataType="i4"
+                      cachedName="LoanDays"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanDays]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanDays]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[DaysOverdue]"
+                      cachedDataType="i4"
+                      cachedName="DaysOverdue"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DaysOverdue]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[DaysOverdue]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[IsOverdue365]"
+                      cachedDataType="bool"
+                      cachedName="IsOverdue365"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[IsOverdue365]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[IsOverdue365]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[LoanCount]"
+                      cachedDataType="i4"
+                      cachedName="LoanCount"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanCount]"
+                      lineageId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output].Columns[LoanCount]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[StudentKey]"
+                      cachedDataType="i4"
+                      cachedName="StudentKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[StudentKey]"
+                      lineageId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output].Columns[StudentKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      lineageId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[FacultyKey]"
+                      cachedDataType="i4"
+                      cachedName="FacultyKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FacultyKey]"
+                      lineageId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output].Columns[FacultyKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[BookKey]"
+                      cachedDataType="i4"
+                      cachedName="BookKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BookKey]"
+                      lineageId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output].Columns[BookKey]" />
+                    <inputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[LoanDateKey]"
+                      cachedDataType="i4"
+                      cachedName="LoanDateKey"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanDateKey]"
+                      lineageId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output].Columns[LoanDateKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BookLoanKey]"
+                      dataType="i8"
+                      name="BookLoanKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanDateKey]"
+                      dataType="i4"
+                      name="LoanDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ReturnDateKey]"
+                      dataType="i4"
+                      name="ReturnDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[StudentKey]"
+                      dataType="i4"
+                      name="StudentKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      dataType="i4"
+                      name="GroupKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FacultyKey]"
+                      dataType="i4"
+                      name="FacultyKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BookKey]"
+                      dataType="i4"
+                      name="BookKey" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanID]"
+                      dataType="i8"
+                      name="LoanID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanCount]"
+                      dataType="i4"
+                      name="LoanCount" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[IsReturned]"
+                      dataType="bool"
+                      name="IsReturned" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LoanDays]"
+                      dataType="i4"
+                      name="LoanDays" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DaysOverdue]"
+                      dataType="i4"
+                      name="DaysOverdue" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[IsOverdue365]"
+                      dataType="bool"
+                      name="IsOverdue365" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactBookLoans\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    bl.LoanID,
+    bl.BookID,
+    bl.StudentID,
+    bl.LoanDate,
+    bl.ReturnDate,
+    s.GroupID,
+    g.FacultyID
+FROM dbo.BookLoan bl
+JOIN dbo.Student s ON s.StudentID = bl.StudentID
+JOIN dbo.[Group] g ON g.GroupID = s.GroupID;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactBookLoans\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{21AADBFE-0D8E-42C1-B096-9431013ED1C4}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-GQROG2M_LOCALHOST.Kursova.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoanID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanID]"
+                      name="LoanID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]"
+                      name="BookID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StudentID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[StudentID]"
+                      name="StudentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoanDate]"
+                      length="10"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoanDate]"
+                      name="LoanDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReturnDate]"
+                      length="10"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[ReturnDate]"
+                      name="ReturnDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GroupID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[GroupID]"
+                      name="GroupID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[FacultyID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FacultyID]"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].Columns[FacultyID]"
+                      name="FacultyID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoanID]"
+                      dataType="i8"
+                      name="LoanID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookID]"
+                      dataType="i4"
+                      name="BookID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StudentID]"
+                      dataType="i4"
+                      name="StudentID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoanDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="LoanDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ReturnDate]"
+                      dataType="wstr"
+                      length="10"
+                      name="ReturnDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GroupID]"
+                      dataType="i4"
+                      name="GroupID" />
+                    <externalMetadataColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FacultyID]"
+                      dataType="i4"
+                      name="FacultyID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoanID]"
+                      dataType="i8"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoanID]"
+                      name="LoanID" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookID]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookID]"
+                      name="BookID" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StudentID]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StudentID]"
+                      name="StudentID" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoanDate]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoanDate]"
+                      name="LoanDate" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReturnDate]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ReturnDate]"
+                      name="ReturnDate" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GroupID]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GroupID]"
+                      name="GroupID" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FacultyID]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FacultyID]"
+                      name="FacultyID" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FactBookLoans.Paths[Data Conversion Output]"
+              endId="Package\FactBookLoans\Derived Column.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\FactBookLoans\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Derived Column Output]"
+              endId="Package\FactBookLoans\DimDateLoan.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\FactBookLoans\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[HasReturnDate]"
+              endId="Package\FactBookLoans\DimDateReturn.Inputs[Lookup Input]"
+              name="HasReturnDate"
+              startId="Package\FactBookLoans\Conditional Split.Outputs[HasReturnDate]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output]"
+              endId="Package\FactBookLoans\DimGroup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimStudent.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output1]"
+              endId="Package\FactBookLoans\DimFaculty.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimGroup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output2]"
+              endId="Package\FactBookLoans\DimBook.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimFaculty.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output3]"
+              endId="Package\FactBookLoans\DimStudent.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimDateLoan.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output4]"
+              endId="Package\FactBookLoans\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimBook.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[Lookup Match Output5]"
+              endId="Package\FactBookLoans\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\FactBookLoans\DimDateReturn.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactBookLoans.Paths[NoReturnDate]"
+              endId="Package\FactBookLoans\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="NoReturnDate"
+              startId="Package\FactBookLoans\Conditional Split.Outputs[NoReturnDate]" />
+            <path
+              refId="Package\FactBookLoans.Paths[OLE DB Source Output]"
+              endId="Package\FactBookLoans\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\FactBookLoans\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BAB827ED-4741-42A1-9118-40306A69DABB}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\FactBookLoans" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="138.571428866411,42.0588234925456" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\FactBookLoans"
+          TopLeft="150.714286035117,139.176470466242" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="222.442857450764,83.6588234925456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5176469736961"
+              Start="0,0"
+              End="0,48.0176469736961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0176469736961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FactBookLoans">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\FactBookLoans\OLE DB Source"
+          TopLeft="130.000000276736,35.9411764390844" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\FactBookLoans\Data Conversion"
+          TopLeft="122.142857402867,126.941176359319" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[OLE DB Source Output]"
+          TopLeft="202.271428839802,77.5411764390844">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.399999920235"
+              Start="0,0"
+              End="0,41.899999920235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.899999920235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\FactBookLoans\Derived Column"
+          TopLeft="129.28571456093,217.941176279554" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Data Conversion Output]"
+          TopLeft="202.714285981898,168.541176359319">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.3999999202349"
+              Start="0,0"
+              End="0,41.8999999202349">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.8999999202349" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\FactBookLoans\DimDateLoan"
+          TopLeft="133.571428855767,285.235293867627" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\FactBookLoans\DimDateReturn"
+          TopLeft="570.000001213381,284.752940932483" />
+        <NodeLayout
+          Size="133.6,41.6"
+          Id="Package\FactBookLoans\DimStudent"
+          TopLeft="377.142857945695,260.52941154686" />
+        <NodeLayout
+          Size="130.4,41.6"
+          Id="Package\FactBookLoans\DimFaculty"
+          TopLeft="370.714286503439,40.2941176222579" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\FactBookLoans\DimBook"
+          TopLeft="572.857144076605,47.9411764390844" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Derived Column Output]"
+          TopLeft="205.028571708348,259.541176279554">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25.694117588073"
+              Start="0,0"
+              End="0,18.194117588073">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.194117588073" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\FactBookLoans\Conditional Split"
+          TopLeft="561.428572623706,160.976470454847" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[HasReturnDate]"
+          TopLeft="641.914286918543,202.576470454847">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.1764704776366"
+              Start="0,0"
+              End="0,74.6764704776366">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.6764704776366" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-33.83134765625,32.6272977388183,67.6626953125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="125.6,41.6"
+          Id="Package\FactBookLoans\DimGroup"
+          TopLeft="375.000000798276,149.388235198936" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output]"
+          TopLeft="440.871429371986,260.52941154686">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-69.5411763479244"
+              Start="0,0"
+              End="0,-62.0411763479244">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-62.0411763479244" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,-36.8252756739622,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output1]"
+          TopLeft="436.857143650858,149.388235198936">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-67.4941175766779"
+              Start="0,0"
+              End="0,-59.9941175766779">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-59.9941175766779" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,-35.8017462883389,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output2]"
+          TopLeft="501.114286503439,64.9176470306712">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.742857573166,0"
+              Start="0,0"
+              End="64.242857573166,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.242857573166,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-16.069957932167,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output3]"
+          TopLeft="275.171428855767,306.035293867627">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.971429089928,-24.7058823207671"
+              Start="0,0"
+              End="94.4714290899282,-24.7058823207671">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.9857145449641,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.9857145449641,0"
+                    Point2="50.9857145449641,0"
+                    Point3="50.9857145449641,-4" />
+                  <mssgle:LineSegment
+                    End="50.9857145449641,-20.7058823207671" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.9857145449641,-20.7058823207671"
+                    Point2="50.9857145449641,-24.7058823207671"
+                    Point3="54.9857145449641,-24.7058823207671" />
+                  <mssgle:LineSegment
+                    End="94.4714290899282,-24.7058823207671" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.79432782621408,1,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output4]"
+          TopLeft="635.742858350155,89.5411764390844">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.4352940157622"
+              Start="0,0"
+              End="0,63.9352940157622">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.9352940157622" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,26.1629595078811,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\FactBookLoans\OLE DB Destination"
+          TopLeft="555.714286897256,360.176470272527" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[Lookup Match Output5]"
+          TopLeft="643.057144055318,326.352940932483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.8235293400436"
+              Start="0,0"
+              End="0,26.3235293400436">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.3235293400436" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.3570771700218,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\FactBookLoans\OLE DB Destination 1"
+          TopLeft="764.742858733329,161.3294116836" />
+        <EdgeLayout
+          Id="Package\FactBookLoans.Paths[NoReturnDate]"
+          TopLeft="715.828572623706,181.952941069223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.9142861096232,0"
+              Start="0,0"
+              End="41.4142861096232,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.4142861096232,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-10.9442046014384,5,63.3026953125,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimDateLoan">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimDateReturn">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimStudent">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimFaculty">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimBook">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\DimGroup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactBookLoans\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
